@@ -11,12 +11,15 @@ const NewBlogPost = ({history, addBlogPost, nextId}) => {
         margin: ".5em"
     }
     const labelStyles = {
-        fontSize: "1.2em"
+        fontSize: "1.5em",
+        color: "blue"
+        
     }
     const textAreaStyles = {
         height: "200px",
         margin: ".5em",
         width: "70vw"
+        
     }
     function handleChange(event) {
         const name = event.target.name

@@ -6,6 +6,7 @@ import BlogPost from './components/BlogPost'
 import NewBlogPost from './components/NewBlogPost'
 import EditBlogPost from './components/EditBlogPost'
 import blogData from './data/post_data'
+import './App.css'
 
 const App = () => {
   const [blogPosts, setBlogPosts] = useState([])
