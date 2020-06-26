@@ -1,48 +1,39 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-const BlogPost = ({history, post, showControls, deleteBlogPost}) => {
-
-    // If we don't have a post, return null
-    if (!post) return null
+const BlogPost = ({history,post, showControls, deleteBlogPost}) => {
+    if (!post) return <p>we do not have a post with that id</p>
 
     const linkStyles = {
-        textDecoration: 'none',
-        color: 'black' 
+        textDecoration : 'none',
+        color : 'black'
     }
-    const buttonStyles = {
-        margin: '.5em',
-        fontSize: '1em'
-    }
-    const {title, modified_date, category, content} = post 
-
-    // Handle the delete button
-    function handleDelete(event) {
-        event.preventDefault()
+    //console.log("showControls: ",showControls)
+    function handleDelete (){
         deleteBlogPost(post._id)
         history.push("/")
     }
 
-    // Handle the edit button
-    function handleEdit(event) {
-        event.preventDefault()
+    function handleEdit(){
         history.push(`/posts/edit/${post._id}`)
     }
-
+    //<button onClick={handleEdit}>Edit</button>
+    //<Link to={`/posts/edit/${post._id}`}><button>Edit</button></Link>
+    const {title, modified_date, category, content} = post
     return (
         <div>
             <Link style={linkStyles} to={`/posts/${post._id}`}>
-                <h1>{title}</h1>
-                <p>{modified_date.toLocaleString()}</p>
-                <p>{category}</p>
-                <p>{content}</p>
-                {showControls && (
-                    <div>
-                        <button style={buttonStyles} onClick={handleDelete}>Delete</button>
-                        <button style={buttonStyles} onClick={handleEdit}>Edit</button>
-                    </div>
-                )}
+                <h2>{title}</h2> 
             </Link>
+            <p>{modified_date.toLocaleString()}</p>
+            <p>{category}</p>
+            <p>{content}</p>
+            {showControls && 
+                <div>
+                    <button onClick={handleEdit}>Edit</button>
+                    <button onClick={handleDelete}>Delete</button>
+                </div>
+            }
         </div>
     )
 }
